@@ -3753,7 +3753,7 @@ if (isset($_POST['enviar'])) {
 } ?></div><?php
 $id_rol = $_SESSION['idvista'];
 $sqlSelect = "SELECT 
-                                                    id_archivo, fecha,indicador
+                                                    id_archivo,fecha,indicador
                                                  FROM
                                                      historial
                                                          JOIN
