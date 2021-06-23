@@ -409,7 +409,7 @@ if (isset($_POST['import'])) {
                             "','" .
                             $documento .
                             "','" .
-                            7 .
+                            9 .
                             "')";
                         $delete =
                             "delete from lectura_tarjeta where id_airview = 'id_airview'";
@@ -3296,10 +3296,10 @@ if (isset($_POST['enviar'])) {
             $mensaje = 'Hubo un problema al eliminar el archivo';
         }
     }
-    if (stripos($id, 'SAC_P3_') !== false) {
+    if (stripos($id, 'LOG_P2_') !== false) {
         $sql = "DELETE FROM historial where id_archivo= '" . $id . "'";
         $borrado = mysqli_query($con, $sql);
-        $sql2 = "DELETE FROM sac_incidencia where id_archivo = '" . $id . "'";
+        $sql2 = "DELETE FROM pacientes where id_archivo = '" . $id . "'";
         $borrado2 = mysqli_query($con, $sql2);
         if (!empty($borrado)) {
             $type = 'success';
@@ -3309,10 +3309,10 @@ if (isset($_POST['enviar'])) {
             $mensaje = 'Hubo un problema al eliminar el archivo';
         }
     }
-    if (stripos($id, 'SAC_P4_') !== false) {
+    if (stripos($id, 'DIA_P1_') !== false) {
         $sql = "DELETE FROM historial where id_archivo= '" . $id . "'";
         $borrado = mysqli_query($con, $sql);
-        $sql2 = "DELETE FROM sac_oportunidad where id_archivo = '" . $id . "'";
+        $sql2 = "DELETE FROM lectura_tarjeta where id_archivo = '" . $id . "'";
         $borrado2 = mysqli_query($con, $sql2);
         if (!empty($borrado)) {
             $type = 'success';
