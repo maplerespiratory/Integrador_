@@ -63,7 +63,7 @@ if (isset($_POST['import'])) {
                             $documento .
                             "','" .
                             $aseguradora .
-                            "',
+                            "', 
                         CASE 
                             WHEN ASEGURADORA = 'ENTIDAD PARTICULAR' THEN 1
                             WHEN ASEGURADORA = 'EPS FAMISANAR  S.A.S' THEN 2
@@ -174,8 +174,7 @@ if (isset($_POST['import'])) {
                             $nombres .
                             "','" .
                             $direccion .
-                            "'
-                        ,'" .
+                            "','" .
                             $telefono .
                             "','" .
                             $celular .
@@ -3761,7 +3760,7 @@ $sqlSelect = "SELECT
                                                  WHERE
                                                      historial.idvista IN ($id_rol)
                                                  ORDER BY historial.id DESC
-                                                 LIMIT 50";
+                                                 LIMIT 10";
 $result = mysqli_query($con, $sqlSelect);
 if (mysqli_num_rows($result) > 0) { ?><table class='tutorial-table'>
                 <form action="" method="post">
@@ -3784,7 +3783,7 @@ if (mysqli_num_rows($result) > 0) { ?><table class='tutorial-table'>
                             <td><?php echo $row['indicador']; ?></td>
                             <td>
                                 <!-- Ajuste de id de archivo por error al momento de eliminar un archivo por el $ID -->
-                                <input type="submit" style="width: 110px;" name="enviar" value="<?php echo $row[
+                                <input type="submit" disabled="disabled" style="width: 110px;" name="enviar" value="<?php echo $row[
                                     'id_archivo'
                                 ]; ?>">
                             </td>

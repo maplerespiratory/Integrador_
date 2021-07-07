@@ -41,6 +41,9 @@ include('header.php');
             <li>
                 <a href="plantillas/DIA - LECTURA DE TARJETA AIRVIEW.xlsx">DIA - LECTURA DE TARJETA AIRVIEW</a>
             </li>
+            <li>
+                <a href="plantillas/DIA - INACTIVA PACIENTES AIRVIEW.xlsx">DIA - INACTIVA PACIENTES AIRVIEW</a>
+            </li>
         </ul>
 
     </div>
