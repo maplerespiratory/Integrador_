@@ -434,56 +434,36 @@ if (isset($_POST['import'])) {
                 }
             }
         }
-        if ($area == '39' and $nombre_plantilla == 'SAC - PQR POR SEDE.xlsx') {
+        if ($area == '6' and $nombre_plantilla == 'DIA - INACTIVA PACIENTES AIRVIEW.xlsx') {
             $random = random_int(111111, 999999);
-            $codigo = 'SAC_P5_' . $random;
+            $codigo = 'DIA_P2_' . $random;
             for ($i = 0; $i < $sheetCount; $i++) {
                 $Reader->ChangeSheet($i);
                 foreach ($Reader as $Row) {
-                    $sede = '';
+                    $id_airview = '';
                     if (isset($Row[0])) {
-                        $sede = mysqli_real_escape_string($con, $Row[0]);
-                    }
-                    $cantidad = '';
-                    if (isset($Row[1])) {
-                        $cantidad = mysqli_real_escape_string($con, $Row[1]);
-                    }
-                    $desde = '';
-                    if (isset($Row[2])) {
-                        $desde = mysqli_real_escape_string($con, $Row[2]);
-                    }
-                    $hasta = '';
-                    if (isset($Row[3])) {
-                        $hasta = mysqli_real_escape_string($con, $Row[3]);
+                        $id_airview = mysqli_real_escape_string($con, $Row[0]);
                     }
                     if (
-                        !empty($desde) ||
-                        !empty($hasta) ||
-                        !empty($sede) ||
-                        !empty($cantidad)
+                        !empty($id_airview) 
                     ) {
                         $query =
-                            "insert into sac_pqr_sede (id_archivo,desde,hasta,area,sede,cantidad) 
+                            "insert into airview (id_archivo,id_airview,id_area) 
                         values('" .
                             $codigo .
                             "','" .
-                            $desde .
+                            $id_airview .
                             "','" .
-                            $hasta .
-                            "','" .
-                            $area .
-                            "','" .
-                            $sede .
-                            "','" .
-                            $cantidad .
+                            6 .
                             "')";
                         $delete =
-                            "delete from sac_pqr_sede where sede = 'sede'";
+                            "delete from airview where id_airview = 'id_airview'";
                         $resultados = mysqli_query($con, $query);
                         $borrado = mysqli_query($con, $delete);
-                        $actualizacion = "insert into historial (ID_ARCHIVO,DESDE,HASTA,AREA ,IDVISTA )  
-                        (select distinct ID_ARCHIVO,DESDE,HASTA,AREA,IDVISTA from sac_pqr_sede
-                        where ID_ARCHIVO not in (select distinct ID_ARCHIVO from historial))";
+                        $actualizacion = "insert into historial (ID_ARCHIVO,FECHA,AREA,IDVISTA,ID_PROCESO,ESTADO)  
+                        (select distinct ID_ARCHIVO,min(FECHA),ID_AREA,ID_AREA,6,0 from airview 
+                        where ID_ARCHIVO not in (select distinct ID_ARCHIVO from historial)
+                        group by id_archivo);";
                         $actualizar = mysqli_query($con, $actualizacion);
                         if (!empty($resultados)) {
                             $type = 'success';
