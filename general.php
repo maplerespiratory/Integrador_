@@ -32,41 +32,41 @@ if ($ver == '') {
                                             $result = mysqli_query($con, $sqlSelect);
                                             if (mysqli_num_rows($result) > 0) {
                                             ?><table class='tutorial-table'>
-            <form action="" method="post">
-                <thead>
-                    <th colspan="6">
-                        <h4>Consulta y descarga de archivos asociados</h4>
-                    </th>
-                    <tr>
-                        <th>Fecha Cargue</th>
-                        <th>Desde</th>
-                        <th>Hasta</th>
-                        <th>Indicador</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead><?php while ($row = mysqli_fetch_array($result)) {
+        <form action="" method="post">
+            <thead>
+                <th colspan="6">
+                    <h4>Consulta y descarga de archivos asociados</h4>
+                </th>
+                <tr>
+                    <th>Fecha Cargue</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                    <th>Indicador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead><?php while ($row = mysqli_fetch_array($result)) {
                         ?><tbody>
-                        <tr>
-                            <td><?php echo $row['fecha_cargue'];
+                <tr>
+                    <td><?php echo $row['fecha_cargue'];
                                 ?></td>
-                            <td><?php echo $row['desde'];
+                    <td><?php echo $row['desde'];
                                 ?></td>
-                            <td><?php echo $row['hasta'];
+                    <td><?php echo $row['hasta'];
                                 ?></td>
-                            <td><?php echo $row['indicador'];
+                    <td><?php echo $row['indicador'];
                                 ?></td>
-                            <td>
-                                <input type="hidden" readonly name="enviar" value="<?php echo $row['id_archivo'];
+                    <td>
+                        <input type="hidden" readonly name="enviar" value="<?php echo $row['id_archivo'];
                                                                                     ?>">
-                                <a href="definitivos/<?php echo $row['id_archivo'] . '.xlsx' ?>">Descargar Archivo </a>
-                            </td>
-                        </tr>
-                    <?php
+                        <a href="definitivos/<?php echo $row['id_archivo'] . '.xlsx' ?>">Descargar Archivo </a>
+                    </td>
+                </tr>
+                <?php
                                                 }
                     ?>
-            </form>
-            </tbody>
-        </table><?php
+        </form>
+        </tbody>
+    </table><?php
                                             }
                 ?>
 </div>

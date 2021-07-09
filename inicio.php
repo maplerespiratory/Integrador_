@@ -143,7 +143,8 @@ if (isset($_POST['import'])) {
                     $tipo_afiliado = '';
                     if (isset($Row[7])) {
                         $tipo_afiliado = mysqli_real_escape_string(
-                            $con, $Row[7]
+                            $con,
+                            $Row[7]
                         );
                     }
                     $email = '';
@@ -395,10 +396,7 @@ if (isset($_POST['import'])) {
                     if (isset($Row[1])) {
                         $documento = mysqli_real_escape_string($con, $Row[1]);
                     }
-                    if (
-                        !empty($id_airview) ||
-                        !empty($documento) 
-                    ) {
+                    if (!empty($id_airview) || !empty($documento)) {
                         $query =
                             "insert into lectura_tarjeta (id_archivo,id_airview,documento,id_area) 
                         values('" .
@@ -434,7 +432,10 @@ if (isset($_POST['import'])) {
                 }
             }
         }
-        if ($area == '6' and $nombre_plantilla == 'DIA - INACTIVA PACIENTES AIRVIEW.xlsx') {
+        if (
+            $area == '6' and
+            $nombre_plantilla == 'DIA - INACTIVA PACIENTES AIRVIEW.xlsx'
+        ) {
             $random = random_int(111111, 999999);
             $codigo = 'DIA_P2_' . $random;
             for ($i = 0; $i < $sheetCount; $i++) {
@@ -444,9 +445,7 @@ if (isset($_POST['import'])) {
                     if (isset($Row[0])) {
                         $id_airview = mysqli_real_escape_string($con, $Row[0]);
                     }
-                    if (
-                        !empty($id_airview) 
-                    ) {
+                    if (!empty($id_airview)) {
                         $query =
                             "insert into airview (id_archivo,id_airview,id_area) 
                         values('" .
@@ -480,179 +479,38 @@ if (isset($_POST['import'])) {
                 }
             }
         }
-        ##### SERVICIO AL CLIENTE - FIN
-        ##### TALENTO HUMANO - INICIO
-        if ($area == '18' and $nombre_plantilla == 'TH - TALENTO HUMANO.xlsx') {
+
+        if (
+            $area == '1' and
+            $nombre_plantilla == 'SIS - EXCLUIR DOCUMENTOS DE PROCESOS.xlsx'
+        ) {
             $random = random_int(111111, 999999);
-            $codigo = 'THU_P1_' . $random;
+            $codigo = 'SIS_P3_' . $random;
             for ($i = 0; $i < $sheetCount; $i++) {
                 $Reader->ChangeSheet($i);
                 foreach ($Reader as $Row) {
-                    $ingresos = '';
+                    $documento = '';
                     if (isset($Row[0])) {
-                        $ingresos = mysqli_real_escape_string($con, $Row[0]);
+                        $documento = mysqli_real_escape_string($con, $Row[0]);
                     }
-                    $voluntarios = '';
-                    if (isset($Row[1])) {
-                        $voluntarios = mysqli_real_escape_string($con, $Row[1]);
-                    }
-                    $con_justa_causa = '';
-                    if (isset($Row[2])) {
-                        $con_justa_causa = mysqli_real_escape_string(
-                            $con,
-                            $Row[2]
-                        );
-                    }
-                    $sin_justa_causa = '';
-                    if (isset($Row[3])) {
-                        $sin_justa_causa = mysqli_real_escape_string(
-                            $con,
-                            $Row[3]
-                        );
-                    }
-                    $termino_cto = '';
-                    if (isset($Row[4])) {
-                        $termino_cto = mysqli_real_escape_string($con, $Row[4]);
-                    }
-                    $vacantes_p = '';
-                    if (isset($Row[5])) {
-                        $vacantes_p = mysqli_real_escape_string($con, $Row[5]);
-                    }
-                    $requisiciones_p = '';
-                    if (isset($Row[6])) {
-                        $requisiciones_p = mysqli_real_escape_string(
-                            $con,
-                            $Row[6]
-                        );
-                    }
-                    $procesos_d = '';
-                    if (isset($Row[7])) {
-                        $procesos_d = mysqli_real_escape_string($con, $Row[7]);
-                    }
-                    $resultado_p = '';
-                    if (isset($Row[8])) {
-                        $resultado_p = mysqli_real_escape_string($con, $Row[8]);
-                    }
-                    $resultado_n = '';
-                    if (isset($Row[9])) {
-                        $resultado_n = mysqli_real_escape_string($con, $Row[9]);
-                    }
-                    $pendiente_m = '';
-                    if (isset($Row[10])) {
-                        $pendiente_m = mysqli_real_escape_string(
-                            $con,
-                            $Row[10]
-                        );
-                    }
-                    $pendiente_r = '';
-                    if (isset($Row[11])) {
-                        $pendiente_r = mysqli_real_escape_string(
-                            $con,
-                            $Row[11]
-                        );
-                    }
-                    $recuperados = '';
-                    if (isset($Row[12])) {
-                        $recuperados = mysqli_real_escape_string(
-                            $con,
-                            $Row[12]
-                        );
-                    }
-                    $aislamiento = '';
-                    if (isset($Row[13])) {
-                        $aislamiento = mysqli_real_escape_string(
-                            $con,
-                            $Row[13]
-                        );
-                    }
-                    $ausentismo_d = '';
-                    if (isset($Row[14])) {
-                        $ausentismo_d = mysqli_real_escape_string(
-                            $con,
-                            $Row[14]
-                        );
-                    }
-                    /* $desde = "";
-                    if (isset($Row[15])) {
-                        $desde = mysqli_real_escape_string($con, $Row[15]);
-                    }
-                    $hasta = "";
-                    if (isset($Row[16])) {
-                        $hasta = mysqli_real_escape_string($con, $Row[16]);
-                    } */
-                    if (
-                        !empty($desde) ||
-                        !empty($hasta) ||
-                        !empty($area) ||
-                        !empty($ingresos) ||
-                        !empty($voluntarios) ||
-                        !empty($con_justa_causa) ||
-                        !empty($sin_justa_causa) ||
-                        !empty($termino_cto) ||
-                        !empty($vacantes_p) ||
-                        !empty($requisiciones_p) ||
-                        !empty($procesos_d) ||
-                        !empty($resultado_p) ||
-                        !empty($resultado_n) ||
-                        !empty($pendiente_m) ||
-                        !empty($pendiente_r) ||
-                        !empty($recuperados) ||
-                        !empty($aislamiento) ||
-                        !empty($ausentismo_d)
-                    ) {
+                    if (!empty($documento)) {
                         $query =
-                            "insert into talento_humano (id_archivo,desde,hasta,area,ingresos,voluntarios,con_justa_causa,sin_justa_causa,termino_cto,
-                        vacantes_p,requisiciones_p,procesos_d,resultado_p,resultado_n,pendiente_m,pendiente_r,recuperados,aislamiento,ausentismo_d) 
+                            "insert into excluidos (id_archivo,documento,id_area) 
                         values('" .
                             $codigo .
                             "','" .
-                            $desde .
+                            $documento .
                             "','" .
-                            $hasta .
-                            "','" .
-                            $area .
-                            "','" .
-                            $ingresos .
-                            "','" .
-                            $voluntarios .
-                            "','" .
-                            $con_justa_causa .
-                            "'
-                        ,'" .
-                            $sin_justa_causa .
-                            "','" .
-                            $termino_cto .
-                            "','" .
-                            $vacantes_p .
-                            "','" .
-                            $requisiciones_p .
-                            "','" .
-                            $procesos_d .
-                            "'
-                        ,'" .
-                            $resultado_p .
-                            "','" .
-                            $resultado_n .
-                            "','" .
-                            $pendiente_m .
-                            "','" .
-                            $pendiente_r .
-                            "','" .
-                            $recuperados .
-                            "'
-                        ,'" .
-                            $aislamiento .
-                            "','" .
-                            $ausentismo_d .
+                            1 .
                             "')";
-                        $delete = "delete from talento_humano where ingresos = 0 and voluntarios = 0 and con_justa_causa = 0 and sin_justa_causa = 0
-                        and termino_cto = 0 and vacantes_p = 0 and requisiciones_p = 0 and procesos_d = 0 and resultado_p = 0 and resultado_n = 0 and
-                        pendiente_m = 0 and pendiente_r = 0 and recuperados = 0 and aislamiento = 0 and ausentismo_d = 0";
+                        $delete =
+                            "delete from excluidos where documento = 'documento'";
                         $resultados = mysqli_query($con, $query);
                         $borrado = mysqli_query($con, $delete);
-                        $actualizacion = "insert into historial (ID_ARCHIVO,DESDE,HASTA,AREA,IDVISTA)  
-                        (select distinct ID_ARCHIVO,DESDE,HASTA,AREA,IDVISTA from talento_humano
-                        where ID_ARCHIVO not in (select distinct ID_ARCHIVO from historial))";
+                        $actualizacion = "insert into historial (ID_ARCHIVO,FECHA,AREA,IDVISTA,ID_PROCESO,ESTADO)  
+                        (select distinct ID_ARCHIVO,min(FECHA),ID_AREA,ID_AREA,1,0 from excluidos 
+                        where ID_ARCHIVO not in (select distinct ID_ARCHIVO from historial)
+                        group by id_archivo);";
                         $actualizar = mysqli_query($con, $actualizacion);
                         if (!empty($resultados)) {
                             $type = 'success';
@@ -669,8 +527,7 @@ if (isset($_POST['import'])) {
                 }
             }
         }
-        ##### TALENTO HUMANO - FIN
-        ##### DX - INICIO
+
         if (
             $area == '7' and
             $nombre_plantilla == 'DX - ESTUDIOS DE DIAGNOSTICO POR SEDE.xlsx'
@@ -3739,8 +3596,8 @@ $sqlSelect = "SELECT
                                                      indicador ON indicador.id = historial.area
                                                  WHERE
                                                      historial.idvista IN ($id_rol)
-                                                 ORDER BY historial.id DESC
-                                                 LIMIT 10";
+                                                 ORDER BY historial.fecha DESC
+                                                 LIMIT 20";
 $result = mysqli_query($con, $sqlSelect);
 if (mysqli_num_rows($result) > 0) { ?><table class='tutorial-table'>
                 <form action="" method="post">
@@ -3779,4 +3636,5 @@ if (mysqli_num_rows($result) > 0) { ?><table class='tutorial-table'>
 <script src="assets/jquery-1.12.4-jquery.min.js"></script>
 <script src="dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
