@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Integrador Maple</title>
+	<title>Integrador Archivos Maple</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 </head>
 
