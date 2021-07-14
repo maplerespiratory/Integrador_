@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Integrador Maple</title>
+    <title>Integrador Archivos Maple</title>
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/sticky-footer-navbar.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
